@@ -1,5 +1,5 @@
 ﻿using System;
-using DesignPatternLibrary;
+using s = DesignPatternLibrary.Structural;
 
 namespace ConsoleApplication1
 {
@@ -17,26 +17,26 @@ namespace ConsoleApplication1
         static void RunBuilder()
         {
             Console.WriteLine("RunBuilder");
-            Director d = new Director();
-            Builder b1 = new ConcreteBuilder1();
+            s.Director d = new s.Director();
+            s.Builder b1 = new s.ConcreteBuilder1();
             d.Construct(b1);
-            Product p1 = b1.GetResult();
+            s.Product p1 = b1.GetResult();
             p1.Show();
 
-            Builder b2 = new ConcreteBuilder2();
+            s.Builder b2 = new s.ConcreteBuilder2();
             d.Construct(b2);
-            Product p2 = b2.GetResult();
+            s.Product p2 = b2.GetResult();
             p2.Show();
         }
         static void RunAbstractFactory()
         {
             Console.WriteLine("RunAbstractFactory");
-            AbstractFactory f1 = new ConcreteFactory1();
-            Client c1 = new Client(f1);
+            s.AbstractFactory f1 = new s.ConcreteFactory1();
+            s.Client c1 = new s.Client(f1);
             c1.Run();
 
-            AbstractFactory f2 = new ConcreteFactory2();
-            Client c2 = new Client(f2);
+            s.AbstractFactory f2 = new s.ConcreteFactory2();
+            s.Client c2 = new s.Client(f2);
             c2.Run();
 
         }

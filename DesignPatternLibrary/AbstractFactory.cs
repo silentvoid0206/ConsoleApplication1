@@ -4,8 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DesignPatternLibrary
+namespace DesignPatternLibrary.Structural
 {
+    #region Abstracts
     /// <summary>
     /// Structural Code Example using C# and the Abstract Factory Design Pattern.
     /// </summary>
@@ -14,6 +15,16 @@ namespace DesignPatternLibrary
         public abstract AbstractProductA CreateProductA();
         public abstract AbstractProductB CreateProductB();
     }
+
+    public abstract class AbstractProductA
+    {
+    }
+
+    public abstract class AbstractProductB
+    {
+        public abstract void Interact(AbstractProductA b);
+    }
+    #endregion
 
     public class ConcreteFactory1 : AbstractFactory
     {
@@ -40,14 +51,7 @@ namespace DesignPatternLibrary
             return new ProductB2();
         }
     }
-    public abstract class AbstractProductA
-    {
-    }
 
-    public abstract class AbstractProductB
-    {
-        public abstract void Interact(AbstractProductA b);
-    }
 
     public class ProductA1 : AbstractProductA
     {

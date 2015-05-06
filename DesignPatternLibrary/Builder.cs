@@ -4,8 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DesignPatternLibrary
+namespace DesignPatternLibrary.Structural
 {
+    #region Abstracts
+
     public abstract class Builder
     {
         public Builder()
@@ -21,6 +23,29 @@ namespace DesignPatternLibrary
         }
     }
 
+    #endregion
+
+    #region Types
+
+    public class Product
+    {
+        private List<string> _parts = new List<string>();
+        public void Add(string part)
+        {
+            if (!string.IsNullOrEmpty(part))
+            {
+                _parts.Add(part);
+            }
+        }
+        public void Show()
+        {
+            Console.WriteLine("\nProduct Parts ----------");
+            foreach (string p in _parts)
+            {
+                Console.WriteLine(p);
+            }
+        }
+    }
     public class Director
     {
         public void Construct(Builder b)
@@ -30,6 +55,8 @@ namespace DesignPatternLibrary
         }
 
     }
+
+    #endregion
 
     public class ConcreteBuilder1 : Builder
     {
@@ -57,23 +84,4 @@ namespace DesignPatternLibrary
         }
     }
 
-    public class Product
-    {
-        private List<string> _parts = new List<string>();
-        public void Add(string part)
-        {
-            if (!string.IsNullOrEmpty(part))
-            {
-                _parts.Add(part);
-            }
-        }
-        public void Show()
-        {
-            Console.WriteLine("\nProduct Parts ----------");
-            foreach (string p in _parts)
-            {
-                Console.WriteLine(p);
-            }
-        }
-    }
 }

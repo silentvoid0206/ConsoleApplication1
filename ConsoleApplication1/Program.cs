@@ -1,5 +1,6 @@
 ﻿using System;
-using s = DesignPatternLibrary.Structural;
+using System.Collections.Generic;
+using c = DesignPatternLibrary.Creational;
 
 namespace ConsoleApplication1
 {
@@ -10,35 +11,52 @@ namespace ConsoleApplication1
     {
         static void Main(string[] args)
         {
-            RunBuilder();
+            //RunBuilder();
+            RunFactory();
             Console.ReadKey();
 
         }
         static void RunBuilder()
         {
             Console.WriteLine("RunBuilder");
-            s.Director d = new s.Director();
-            s.Builder b1 = new s.ConcreteBuilder1();
+            c.Director d = new c.Director();
+            c.Builder b1 = new c.ConcreteBuilder1();
             d.Construct(b1);
-            s.Product p1 = b1.GetResult();
+            c.Product p1 = b1.GetResult();
             p1.Show();
 
-            s.Builder b2 = new s.ConcreteBuilder2();
+            c.Builder b2 = new c.ConcreteBuilder2();
             d.Construct(b2);
-            s.Product p2 = b2.GetResult();
+            c.Product p2 = b2.GetResult();
             p2.Show();
         }
         static void RunAbstractFactory()
         {
             Console.WriteLine("RunAbstractFactory");
-            s.AbstractFactory f1 = new s.ConcreteFactory1();
-            s.Client c1 = new s.Client(f1);
+            c.AbstractFactory f1 = new c.ConcreteFactory1();
+            c.Client c1 = new c.Client(f1);
             c1.Run();
 
-            s.AbstractFactory f2 = new s.ConcreteFactory2();
-            s.Client c2 = new s.Client(f2);
+            c.AbstractFactory f2 = new c.ConcreteFactory2();
+            c.Client c2 = new c.Client(f2);
             c2.Run();
 
+        }
+        static void RunFactory()
+        {
+            Console.WriteLine("RunFactory");
+            List<c.Creator> creators = new List<DesignPatternLibrary.Creational.Creator>()
+            {
+                  new c.ConcreteCreatorA()
+                , new c.ConcreteCreatorB()
+            };
+            foreach (c.Creator item in creators)
+            {
+                c.Product1 product = item.FactoryMethod();
+                Console.WriteLine(string.Format("Created {0}"
+                    , product.GetType().Name)
+                    );                
+            }
         }
     }
 }
